@@ -1,0 +1,82 @@
+---
+import { getCollection } from 'astro:content';
+import BlogFilter from '../components/blog/BlogFilter.jsx';
+import '../styles/global.css';
+
+
+const posts = await getCollection('blog');
+const sorted = posts.sort((a, b) => {
+  const dateA = new Date(a.data.date);
+  const dateB = new Date(b.data.date);
+  return dateB.getTime() - dateA.getTime();
+});
+
+
+const postsData = sorted.map(p => ({
+  id: p.slug,
+  title: p.data.title,
+  date: p.data.date,
+  tags: p.data.tags,
+  excerpt: p.data.excerpt,
+  passwords: p.data.passwords ,
+  alasan: p.data.alasan ?? null,
+}));
+
+const canonicalURL = 'https://blog.zamsputra.my.id/';
+const ogImage = 'https://blog.zamsputra.my.id/og-default.png';
+
+
+const jsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Zams Putra Blog",
+  "description": "Boot2root Dev · Writeups · Programming · CTF · Catatan dari Zams Putra",
+  "url": canonicalURL,
+  "author": {
+    "@type": "Person",
+    "name": "Zams Putra",
+    "url": "https://zamsputra.my.id"
+  }
+});
+---
+
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  
+    <title>Blog — Zams Putra</title>
+    <meta name="description" content="Boot2root Dev · Writeups · Programming · CTF · Catatan dari Zams Putra" />
+    <meta name="author" content="Zams Putra" />
+    <meta name="keywords" content="CTF, writeup, boot2root, penetration testing, cybersecurity, programming, linux, HTB, HackTheBox" />
+    <link rel="canonical" href={canonicalURL} />
+
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Blog — Zams Putra" />
+    <meta property="og:description" content="Boot2root Dev · Writeups · Programming · CTF · Catatan dari Zams Putra" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content="Zams Putra Blog" />
+    <meta property="og:locale" content="id_ID" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Blog — Zams Putra" />
+    <meta name="twitter:description" content="Boot2root Dev · Writeups · Programming · CTF" />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:creator" content="@zamsputra" />
+
+    <meta name="robots" content="index, follow" />
+
+   
+    <script type="application/ld+json" set:html={jsonLd} />
+
+    <link rel="icon" type="image/x-icon" href="/img/salad.jpg" />
+  </head>
+  <body>
+
+    <BlogFilter posts={postsData} client:load />
+  </body>
+</html>
