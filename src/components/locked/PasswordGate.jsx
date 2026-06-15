@@ -7,16 +7,14 @@ const hashInput = async (text) => {
   return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, "0")).join("");
 };
 
-const decrypt = async (encryptedText, password, postId) => {
+const decryptContent = async (encryptedContent, password, postId) => {
   const enc = new TextEncoder();
-  const raw = Uint8Array.from(atob(encryptedText), (c) => c.charCodeAt(0));
+  const raw = Uint8Array.from(atob(encryptedContent), (c) => c.charCodeAt(0));
   const iv = raw.slice(0, 12);
   const data = raw.slice(12);
-  const keyMaterial = await crypto.subtle.importKey("raw", enc.encode(password), "PBKDF2", false, ["deriveKey"]);
 
-  
   const salt = enc.encode(`zams-blog-salt-${postId}`);
-
+  const keyMaterial = await crypto.subtle.importKey("raw", enc.encode(password), "PBKDF2", false, ["deriveKey"]);
   const key = await crypto.subtle.deriveKey(
     { name: "PBKDF2", salt, iterations: 100000, hash: "SHA-256" },
     keyMaterial,
@@ -24,7 +22,9 @@ const decrypt = async (encryptedText, password, postId) => {
     false,
     ["decrypt"]
   );
+
   const decrypted = await crypto.subtle.decrypt({ name: "AES-GCM", iv }, key, data);
+ 
   return new TextDecoder().decode(decrypted);
 };
 
@@ -34,13 +34,11 @@ export default function PasswordGate({ post, onUnlock }) {
   const [shake, setShake] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  
-
   const handleClose = () => {
     window.location.href = "/";
   };
 
-const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!input.trim() || loading) return;
 
@@ -51,8 +49,10 @@ const handleSubmit = async (e) => {
       const matched = passwords.find(p => p.hash === hashed);
 
       if (matched) {
-        const filePath = await decrypt(matched.encryptedFile, input, post.id);
-        onUnlock(filePath);
+    
+      
+        const markdownContent = await decryptContent(matched.encryptedContent, input, post.id);
+        onUnlock(markdownContent);
       } else {
         setError(true);
         setShake(true);
@@ -67,7 +67,7 @@ const handleSubmit = async (e) => {
     } finally {
       setLoading(false);
     }
-};
+  };
 
   return (
     <main className="min-h-screen bg-black flex items-center justify-center p-4">

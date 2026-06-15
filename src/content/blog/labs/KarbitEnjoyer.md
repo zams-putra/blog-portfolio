@@ -1,3 +1,11 @@
+---
+title: "Machine - Karbit Enjoyer (linux)"
+date: "2025-12-21"
+tags: ["boot2root", "customlab", "linux"]
+excerpt: "My 4th custom boot2root labs with: [CVE-2025-55182 vuln, RCE, sudo misconfig, etc]"
+---
+
+
 # Machine - Karbit Enjoyer
 
 ![img](https://raw.githubusercontent.com/zams-putra/my-boot2root/refs/heads/main/CVE-2025-55182/img.png)

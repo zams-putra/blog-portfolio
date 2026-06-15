@@ -1,3 +1,10 @@
+---
+title: "Machine — My Nasgor (linux)"
+date: "2025-04-25"
+tags: ["boot2root", "customlab", "linux"]
+excerpt: "My first custom boot2root labs with: [brute force vuln, sensitive data exposure, sudo misconfig, etc]"
+---
+
 # Machine - My Nasgor
 ![img](https://raw.githubusercontent.com/zams-putra/my-boot2root/refs/heads/main/my-nasgor/img.png)
 

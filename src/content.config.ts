@@ -9,11 +9,10 @@ const blog = defineCollection({
     excerpt: z.string(),
     passwords: z.array(z.object({
       hash: z.string(),
-      encryptedFile: z.string(),
+      encryptedContent: z.string(),
     })).optional(),
-    encryptedFile: z.string().optional(),
     alasan: z.string().optional(),
   }),
 });
 
-export const collections = { blog }; 
+export const collections = { blog };

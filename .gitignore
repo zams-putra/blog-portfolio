@@ -22,7 +22,10 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
-
+private
 public/posts/hidden
 scripts/encrypt-post.mjs
 src/content/blog/hidden
+# Local Netlify folder
+.netlify
+netlify.toml

@@ -7,7 +7,6 @@ import oneDark from "react-syntax-highlighter/dist/esm/styles/prism/one-dark";
 import { motion } from "motion/react";
 import PostContent from "./PostContent";
 
-
 let copyTimeouts = {};
 
 function makeMarkdownComponents() {
@@ -134,25 +133,10 @@ function makeMarkdownComponents() {
 }
 
 
-export default function MarkdownRenderer({ post, filePath }) {
-  const [content, setContent] = useState("");
-  const [loading, setLoading] = useState(true);
+export default function MarkdownRenderer({ post, markdownContent }) {
   const markdownComponents = makeMarkdownComponents();
 
-  useEffect(() => {
-    if (!filePath) {
-      setContent("# Error\nFile path tidak ditemukan.");
-      setLoading(false);
-      return;
-    }
-
-    fetch(filePath)
-      .then((r) => r.text())
-      .then((text) => { setContent(text); setLoading(false); })
-      .catch(() => { setContent("# Error\nGagal load file."); setLoading(false); });
-  }, [filePath]);
-
-  const markdownBody = loading ? (
+  const markdownBody = markdownContent == null ? (
     <div className="flex flex-col gap-3 py-20 items-center">
       <div className="flex gap-1">
         {[0, 1, 2].map((i) => (
@@ -167,11 +151,10 @@ export default function MarkdownRenderer({ post, filePath }) {
   ) : (
     <div className="prose prose-invert prose-sm max-w-none">
       <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
-        {content}
+        {markdownContent}
       </ReactMarkdown>
     </div>
   );
-
 
   return (
     <PostContent post={post}>

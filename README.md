@@ -9,3 +9,15 @@
 - React
 - Motion
 - Remark
+
+
+
+## deploy - step :
+- tinggal :
+```bash
+netlify login
+netlify link
+[set ke project name, taruh aja]
+npm run build
+netlify deploy --prod --dir=dist
+```

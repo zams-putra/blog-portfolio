@@ -4,13 +4,12 @@ import { motion, AnimatePresence } from "motion/react";
 import PasswordGate from "./PasswordGate";
 import MarkdownRenderer from "../blog/MarkdownRenderer";
 
-
 export default function LockedPostContent({ post }) {
   const [unlocked, setUnlocked] = useState(false);
-  const [filePath, setFilePath] = useState(null);
+  const [markdownContent, setMarkdownContent] = useState(null);
 
-  const handleUnlock = (decryptedPath) => {
-    setFilePath(decryptedPath);
+  const handleUnlock = (decryptedMarkdown) => {
+    setMarkdownContent(decryptedMarkdown);
     setUnlocked(true);
   };
 
@@ -22,7 +21,7 @@ export default function LockedPostContent({ post }) {
         </motion.div>
       ) : (
         <motion.div key="content" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-          <MarkdownRenderer post={post} filePath={filePath} />
+          <MarkdownRenderer post={post} markdownContent={markdownContent} />
         </motion.div>
       )}
     </AnimatePresence>

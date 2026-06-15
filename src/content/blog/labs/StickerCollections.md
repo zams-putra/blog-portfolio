@@ -1,3 +1,10 @@
+---
+title: "Machine - Sticker Collections (linux)"
+date: "2025-12-08"
+tags: ["boot2root", "customlab", "linux"]
+excerpt: "My third custom boot2root labs with: [CVE-2025-64459 vuln, Command injection, Misconfigured Cron, etc]"
+---
+
 # Machine - Stickers Collection
 
 ![img](https://raw.githubusercontent.com/zams-putra/my-boot2root/refs/heads/main/CVE-2025-64459/img.png)

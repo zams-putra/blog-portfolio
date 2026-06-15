@@ -1,3 +1,10 @@
+---
+title: "Machine - Peak (windows)"
+date: "2026-02-25"
+tags: ["boot2root", "customlab", "windows"]
+excerpt: "My 6th custom boot2root labs with: [OWASP vuln, Windows Standalone]"
+---
+
 # Machine - Peak 
 ![img](https://raw.githubusercontent.com/zams-putra/my-boot2root/refs/heads/main/peak/img.png)
 

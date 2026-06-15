@@ -21,6 +21,7 @@ interface Props {
 const { post } = Astro.props;
 const isLocked = Array.isArray(post.data.passwords) && post.data.passwords.length > 0;
 
+
 const { Content } = isLocked ? { Content: null } : await post.render();
 
 const postMeta = {
@@ -66,7 +67,9 @@ const jsonLd = JSON.stringify({
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>{post.data.title} — Zams Putra</title>
+      
+
+    <title>{post.data.title} - Zams Putra</title>
     <meta name="description" content={post.data.excerpt} />
     <meta name="author" content="Zams Putra" />
     <meta name="keywords" content={post.data.tags.join(', ')} />

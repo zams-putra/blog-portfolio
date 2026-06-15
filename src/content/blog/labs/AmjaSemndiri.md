@@ -1,3 +1,11 @@
+---
+title: "Machine — Amja Semndiri (linux)"
+date: "2025-11-03"
+tags: ["boot2root", "customlab", "linux"]
+excerpt: "My second custom boot2root labs with: [CVE-2025-29927 vuln, sudo misconfig, etc]"
+---
+
+
 # Machine: Amja Semndiri
 ![img](https://raw.githubusercontent.com/zams-putra/my-boot2root/refs/heads/main/CVE-2025-29927/img.png)
 

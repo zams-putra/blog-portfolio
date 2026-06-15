@@ -1,3 +1,10 @@
+---
+title: "Machine - Abandoned (windows)"
+date: "2026-01-22"
+tags: ["boot2root", "customlab", "windows"]
+excerpt: "My 5th custom boot2root labs with: [Active Directory, ACL Abuse]"
+---
+
 # Machine - Abandoned 
 
 ![img](https://raw.githubusercontent.com/zams-putra/my-boot2root/refs/heads/main/abandoned/img.png)
