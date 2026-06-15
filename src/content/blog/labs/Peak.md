@@ -24,7 +24,7 @@ excerpt: "My 6th custom boot2root labs with: [OWASP vuln, Windows Standalone]"
 ## Privilege Escalation
 - SeImpersonatePrivilege Abuse (via PrintSpoofer / GodPotato as spino)
 
-![img](../img/attack_chain/attack_chain6.svg)
+![img](/img/attack_chain/attack_chain6.svg)
 
 
 # 1. Creds

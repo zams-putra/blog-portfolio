@@ -34,7 +34,7 @@ excerpt: "My 5th custom boot2root labs with: [Active Directory, ACL Abuse]"
 - ACL Abuse - GenericAll on Administrator object → full takeover
 
 
-![img](../img/attack_chain/attack_chain5.svg)
+![img](/img/attack_chain/attack_chain5.svg)
 
 
 # 1 - Specs and Details

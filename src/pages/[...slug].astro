@@ -4,6 +4,7 @@ import type { CollectionEntry } from 'astro:content';
 import PostContent from '../components/blog/PostContent.jsx';
 import LockedPostContent from '../components/locked/LockedPostContent.jsx';
 import '../styles/global.css';
+import MarkdownRenderer from "../components/blog/MarkdownRenderer.jsx";
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -22,7 +23,7 @@ const { post } = Astro.props;
 const isLocked = Array.isArray(post.data.passwords) && post.data.passwords.length > 0;
 
 
-const { Content } = isLocked ? { Content: null } : await post.render();
+
 
 const postMeta = {
   id: post.slug,
@@ -111,9 +112,11 @@ const jsonLd = JSON.stringify({
     {isLocked ? (
       <LockedPostContent post={postMeta} client:load />
     ) : (
-      <PostContent post={postMeta} client:load>
-        {Content ? <Content /> : null}
-      </PostContent>
+      <MarkdownRenderer
+        post={postMeta}
+        markdownContent={post.body}
+        client:load
+      />
     )}
   </body>
 </html>

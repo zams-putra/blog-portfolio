@@ -34,7 +34,7 @@ excerpt: "My third custom boot2root labs with: [CVE-2025-64459 vuln, Command inj
 - Misconfigured Cron Job (root-owned cron running writable script)
 - Writable Script Abuse → Reverse Shell via /opt/bonk.sh
 
-![img](../img/attack_chain/attack_chain3.svg)
+![img](/img/attack_chain/attack_chain3.svg)
 
 
 

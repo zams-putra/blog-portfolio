@@ -35,7 +35,7 @@ excerpt: "My first custom boot2root labs with: [brute force vuln, sensitive data
 ## Service Misconfiguration
 - Service Running as Root (Principle of Least Privilege Violation)
 
-![img](../img/attack_chain/attack_chain1.svg)
+![img](/img/attack_chain/attack_chain1.svg)
 
 
 

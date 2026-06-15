@@ -31,7 +31,7 @@ HTTP Method Enumeration (GET vs POST behavior berbeda di /api/secret)
 - Sudo Misconfiguration (Unrestricted sudo on /usr/bin/neofetch)
 - GTFOBins Exploitation via neofetch --config flag → spawn shell as root
 
-![img](../img/attack_chain/attack_chain4.svg)
+![img](/img/attack_chain/attack_chain4.svg)
 
 # 1. Intro
 - ga sama kayak real case aslinya sih, cuman yaudahlah

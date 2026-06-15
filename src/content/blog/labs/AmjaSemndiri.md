@@ -36,7 +36,7 @@ Boot2root (Linux)
 - Sudo Misconfiguration (Unrestricted sudo on /usr/bin/vim)
 - GTFOBins Exploitation via vim binary (sudo vim -c ':!/bin/sh')
 
-![img](../img/attack_chain/attack_chain2.svg)
+![img](/img/attack_chain/attack_chain2.svg)
 
 
 # 1 - Services
