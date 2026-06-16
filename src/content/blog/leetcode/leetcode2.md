@@ -239,3 +239,36 @@ func abs(n int) int {
 - nah nanti tinggal iterasi aja, x ke n + k
 - di setiap iterasi cek, apakah absolute(n - i) <= dan n & i == 0, kalau iya counting += i
 ```
+
+# ___________________________________________________________________________________________
+
+
+# Weekly Contest 506
+
+## Title: Check Good Integer
+### Difficult - Easy
+#### Link: https://leetcode.com/problems/check-good-integer/description/
+
+## Answer :
+
+```go
+func checkGoodInteger(n int) bool {
+	digitSum, squareSum := 0, 0
+	s := strconv.Itoa(n)
+	for i := 0; i < len(s); i++ {
+		nI, _ := strconv.Atoi(string(s[i]))
+		digitSum += nI
+		squareSum += nI * nI
+	}
+	return (squareSum - digitSum) >= 50
+}
+```
+
+## Key Points
+```bash
+- intinya dia tuh ada 2 variable penting
+- digitSum, ini buat sum semua digit, misal input 182 yaudah 1 + 9 + 2, nah disini 19 yauda 1 + 9 = 10
+- squareSum, ini buat sum digit hasil pangkat 2, misal input 19, yauda 1 ** 2 + 9 ** 2 = 1 + 81 = 82
+- next tinggal kurangin aja squareSum ama digitSum, squareSum disini 82 - digitSUm disini 10 = 72
+- return aja 72
+```

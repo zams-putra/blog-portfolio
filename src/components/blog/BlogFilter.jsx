@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import PostCard, { getCategory } from "./PostCard";
 import ObrolanRPG from "../features/ObrolanRPG";
@@ -11,10 +11,13 @@ export default function BlogFilter({ posts }) {
   const [filter, setFilter] = useState("all");
 
  
-  const [showOpening, setShowOpening] = useState(() => {
-    if (typeof window === "undefined") return false;
-    return !sessionStorage.getItem("percakapan");
-  });
+  const [showOpening, setShowOpening] = useState(true);
+
+  useEffect(() => {
+    if (sessionStorage.getItem("percakapan")) {
+      setShowOpening(false);
+    }
+  }, []);
 
   const handleEnter = () => {
     sessionStorage.setItem("percakapan", "1");
@@ -38,7 +41,7 @@ export default function BlogFilter({ posts }) {
         transition={{ duration: 0.6 }}
       >
         <a
-          href="/"
+          href="http://zamsputra.my.id/"
           className="text-slate-500 font-mono text-xs hover:text-purple-400 transition-colors mb-6 inline-block"
         >
           ← cd ../home

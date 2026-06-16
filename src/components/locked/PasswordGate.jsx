@@ -121,7 +121,7 @@ export default function PasswordGate({ post, onUnlock }) {
                 animate={{ opacity: 1 }}
                 className="text-red-400 font-mono text-xs"
               >
-                {`> ERROR: jangan kepo`}
+                {`> ERROR: jangan kepo / open with root flag`}
               </motion.p>
             )}
             <button

@@ -6,8 +6,26 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import oneDark from "react-syntax-highlighter/dist/esm/styles/prism/one-dark";
 import { motion } from "motion/react";
 import PostContent from "./PostContent";
+import TableOfContents from "./TableOfContents";
 
 let copyTimeouts = {};
+
+function slugify(text) {
+  return String(text)
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, "")
+    .trim()
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-");
+}
+
+
+function childrenToText(children) {
+  if (typeof children === "string") return children;
+  if (Array.isArray(children)) return children.map(childrenToText).join("");
+  if (children?.props?.children) return childrenToText(children.props.children);
+  return "";
+}
 
 function makeMarkdownComponents() {
   return {
@@ -78,23 +96,43 @@ function makeMarkdownComponents() {
       );
     },
 
-    h1: ({ children }) => (
-      <h1 className="text-2xl font-bold text-yellow-400 font-mono mt-8 mb-3"
-        style={{ textShadow: "0 0 20px rgba(250,204,21,0.3)" }}>
-        {children}
-      </h1>
-    ),
-    h2: ({ children }) => (
-      <h2 className="text-lg font-bold text-cyan-400 font-mono mt-8 mb-3 pb-2 border-b border-cyan-400/20"
-        style={{ textShadow: "0 0 16px rgba(34,211,238,0.3)" }}>
-        <span className="text-slate-600 mr-2">##</span>{children}
-      </h2>
-    ),
-    h3: ({ children }) => (
-      <h3 className="text-base font-semibold text-purple-400 font-mono mt-6 mb-2">
-        <span className="text-slate-600 mr-2">###</span>{children}
-      </h3>
-    ),
+    h1: ({ children }) => {
+      const id = slugify(childrenToText(children));
+      return (
+        <h1
+          id={id}
+          className="text-2xl font-bold text-yellow-400 font-mono mt-8 mb-3 scroll-mt-24"
+          style={{ textShadow: "0 0 20px rgba(250,204,21,0.3)" }}
+        >
+          {children}
+        </h1>
+      );
+    },
+
+    h2: ({ children }) => {
+      const id = slugify(childrenToText(children));
+      return (
+        <h2
+          id={id}
+          className="text-lg font-bold text-cyan-400 font-mono mt-8 mb-3 pb-2 border-b border-cyan-400/20 scroll-mt-24"
+        >
+          {children}
+        </h2>
+      );
+    },
+
+    h3: ({ children }) => {
+      const id = slugify(childrenToText(children));
+      return (
+        <h3
+          id={id}
+          className="text-lg font-bold text-cyan-400 font-mono mt-8 mb-3 pb-2 border-b border-cyan-400/20 scroll-mt-24"
+        >
+          {children}
+        </h3>
+      );
+    },
+
     p: ({ children }) => (
       <p className="text-slate-300 leading-relaxed mb-4 text-sm">{children}</p>
     ),
@@ -105,13 +143,19 @@ function makeMarkdownComponents() {
         {children}
       </a>
     ),
-    ul: ({ children }) => <ul className="my-3 space-y-1.5 pl-0">{children}</ul>,
-    ol: ({ children }) => <ol className="my-3 space-y-1.5 pl-0 list-none">{children}</ol>,
+    ul: ({ children }) => (
+      <ul className="my-4 pl-6 space-y-2 list-disc marker:text-cyan-400">
+        {children}
+      </ul>
+    ),
+    ol: ({ children }) => (
+      <ol className="my-4 pl-6 space-y-2 list-decimal marker:text-cyan-400">
+        {children}
+      </ol>
+    ),
     li: ({ children }) => (
-      <li className="flex items-start gap-3 text-slate-300 text-sm">
-        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0"
-          style={{ boxShadow: "0 0 6px rgba(34,211,238,0.8)" }} />
-        <span>{children}</span>
+      <li className="text-slate-300 text-sm leading-relaxed">
+        {children}
       </li>
     ),
     blockquote: ({ children }) => (
@@ -158,6 +202,8 @@ export default function MarkdownRenderer({ post, markdownContent }) {
 
   return (
     <PostContent post={post}>
+
+      <TableOfContents markdownContent={markdownContent} />
       {markdownBody}
     </PostContent>
   );

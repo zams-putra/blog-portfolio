@@ -25,9 +25,14 @@ export function useViewCounter(postId) {
           });
         }
 
-        const res = await fetch(`${url}/get/${key}`, {
+        await fetch(`${url}/incr/${encodeURIComponent(key)}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
+
+        const res = await fetch(`${url}/get/${encodeURIComponent(key)}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        
         const data = await res.json();
         setViews(data.result ?? 0);
       } catch (err) {

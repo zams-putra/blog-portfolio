@@ -50,7 +50,7 @@ export default function PostCard({ post, index }) {
         whileHover={{ y: -5 }}
         className={`group flex flex-col rounded-xl border bg-[#0d0d0d] transition-all duration-200 overflow-hidden cursor-pointer ${style.border} ${style.bg}`}
       >
-        {/* Terminal header */}
+   
         <div className="h-10 bg-slate-900 flex items-center px-4 gap-2 border-b border-slate-800">
           <div className="flex gap-1.5">
             <span className="w-2.5 h-2.5 rounded-full bg-red-500/60" />
