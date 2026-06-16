@@ -61,7 +61,7 @@ function GlitchTitle({ text }) {
 }
 
 export default function PostContent({ post, children }) {
-  const { views, loadingers } = useViewCounter(post.id);
+  const { views, loadingers } = useViewCounter(post.id, true);
 
 
   const handleClose = () => {

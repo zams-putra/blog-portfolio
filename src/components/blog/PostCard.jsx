@@ -34,7 +34,7 @@ const cardVariant = {
 };
 
 export default function PostCard({ post, index }) {
-  const { views, loadingers } = useViewCounter(post.id);
+  const { views, loadingers } = useViewCounter(post.id, false);
   const cat = getCategory(post.tags, post.title);
   const style = CATEGORY_COLORS[cat];
  const isLocked = Array.isArray(post.passwords) && post.passwords.length > 0;
